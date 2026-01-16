@@ -1,42 +1,38 @@
-# 🗓️ Booking Flow – State Machine Demo
+# Booking Flow – 3-step State Machine Demo
 
-Mini gyakorló projekt egy több lépéses booking (időpontfoglaló) folyamat megvalósítására  
-egyszerű state machine szemlélettel, backend nélkül.
+Mini gyakorló projekt egy **3 lépéses booking folyamat** megvalósítására,
+**state machine alapú gondolkodással**, backend nélkül.
 
-A projekt célja nem egy kész alkalmazás, hanem a **folyamatvezérelt gondolkodás** gyakorlása,
-amely elengedhetetlen egy valódi időpontfoglaló rendszerhez.
+## 🎯 Cél
+- Többlépéses folyamat kezelése (nem oldalak, hanem flow)
+- Állapotvezérelt UI (single source of truth)
+- Guard logika (nem lehet tovább lépni hiányzó adatokkal)
+- Felkészülés egy későbbi, valódi időpontfoglaló rendszerre
 
----
+## 🧠 Fő koncepciók
+- Egyetlen globális `state` objektum
+- `dispatch(event)` → `transition(state, event)` → `render()`
+- Explicit eventek: `SELECT_SERVICE`, `SELECT_SLOT`, `NEXT`, `BACK`, `RESET`
+- Fake submit a megerősítésnél (`CONFIRM_REQUEST` → `CONFIRM_SUCCESS`)
 
-## 🎯 Célok
-
-- Több lépéses folyamat kezelése (step-based flow)
-- Állapotok egyértelmű kezelése (state machine)
-- Előre / vissza lépés logika
-- Flow resetelése
-- Felkészülés egy későbbi, éles booking rendszerre
-
----
-
-## 🧠 Miért state machine?
-
-Egy foglalás **nem egy oldal**, hanem egy **folyamat**:
-
-- nem lehet minden lépést bármikor elérni
-- visszalépéskor az állapotnak konzisztensnek kell maradnia
-- hibás állapotokat meg kell akadályozni
-
-Ez a projekt ennek a gondolkodásmódnak a gyakorlására szolgál.
-
----
+## 🪜 Lépések
+1. **Szolgáltatás kiválasztása**
+2. **Időpont kiválasztása**
+3. **Foglalás megerősítése + szimulált siker**
 
 ## 🛠 Tech stack
-
 - Vanilla JavaScript
 - HTML
 - CSS
-- (Backend és framework nélkül, tanulási céllal)
+- Nincs framework / backend / build step
+
+## 🐞 Debug panel
+A jobb alsó sarokban megjelenő debug panel a belső state változásait mutatja.
+Ez fejlesztési célokat szolgál, nem production funkció.
+
+## ▶️ Futtatás
+Egyszerűen nyisd meg az `index.html` fájlt böngészőben.
 
 ---
 
-> Ez a projekt tanulási és portfólió célokat szolgál.
+Ez egy tanulóprojekt, amely egy későbbi, valódi booking rendszer alapjául szolgál.

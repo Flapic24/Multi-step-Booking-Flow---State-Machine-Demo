@@ -17,24 +17,45 @@ body {
   color: #1f2937;
 }
 
+/* =========================
+   App layout
+========================= */
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* =========================
-   Header
-========================= */
-.header {
+.header,
+.footer {
   background: #ffffff;
+}
+
+.header {
   border-bottom: 1px solid #e5e7eb;
 }
 
-.header__inner {
+.footer {
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Shared container width */
+.header__inner,
+.stepper,
+.main,
+.footer__inner {
   max-width: 960px;
   margin: 0 auto;
-  padding: 1rem 1.25rem 0.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* =========================
+   Header
+========================= */
+.header__inner {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .title {
@@ -53,9 +74,8 @@ body {
    Stepper
 ========================= */
 .stepper {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0.75rem 1.25rem 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 1rem;
 }
 
 .stepper__list {
@@ -95,14 +115,13 @@ body {
 }
 
 /* =========================
-   Main panel
+   Main / Panel
 ========================= */
 .main {
   flex: 1;
-  max-width: 960px;
-  margin: 0 auto;
   width: 100%;
-  padding: 1.5rem 1.25rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .panel {
@@ -123,15 +142,44 @@ body {
   font-size: 0.95rem;
 }
 
-.placeholder {
-  padding: 1rem;
-  background: #f9fafb;
-  border-radius: 8px;
-  border: 1px dashed #d1d5db;
-  font-size: 0.9rem;
+/* =========================
+   Buttons
+========================= */
+.footer__inner {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
-/* ===== Service grid ===== */
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.btn--ghost {
+  background: #f1f5f9;
+  color: #1f2937;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================
+   Step 1 – Services
+========================= */
 .service-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -139,7 +187,6 @@ body {
   margin-top: 1.25rem;
 }
 
-/* ===== Service card ===== */
 .service-card {
   appearance: none;
   border: 2px solid transparent;
@@ -148,7 +195,6 @@ body {
   background: #ffffff;
   text-align: left;
   cursor: pointer;
-
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
   transition:
     transform 0.15s ease,
@@ -161,7 +207,6 @@ body {
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== Selected state ===== */
 .service-card.is-selected {
   border-color: #2563eb;
   box-shadow:
@@ -169,7 +214,6 @@ body {
     0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-/* ===== Card content ===== */
 .service-card__title {
   margin: 0 0 0.4rem;
   font-size: 1.05rem;
@@ -184,7 +228,6 @@ body {
   color: #64748b;
 }
 
-/* ===== Keyboard accessibility ===== */
 .service-card:focus-visible {
   outline: none;
   box-shadow:
@@ -193,9 +236,8 @@ body {
 }
 
 /* =========================
-   Slot cards (Step 2)
+   Step 2 – Slots
 ========================= */
-
 .slot-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -220,18 +262,15 @@ body {
     transform 0.05s ease;
 }
 
-/* Hover */
 .slot-card:hover {
   border-color: #2563eb;
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.12);
 }
 
-/* Active press */
 .slot-card:active {
   transform: translateY(1px);
 }
 
-/* Selected state */
 .slot-card.is-selected {
   background: #2563eb;
   border-color: #2563eb;
@@ -239,13 +278,9 @@ body {
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
 }
 
-/* Optional: disabled look (ha később kell) */
-.slot-card:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* ===== Confirm summary ===== */
+/* =========================
+   Step 3 – Confirm
+========================= */
 .confirm-summary {
   margin-top: 1.25rem;
   border: 1px solid #e5e7eb;
@@ -278,7 +313,6 @@ body {
   text-align: right;
 }
 
-/* ===== Confirm actions ===== */
 .confirm-actions {
   margin-top: 1.25rem;
   display: flex;
@@ -286,7 +320,6 @@ body {
   gap: 0.75rem;
 }
 
-/* ===== Status messages ===== */
 .confirm-status {
   margin: 0;
   padding: 0.85rem 1rem;
@@ -297,6 +330,10 @@ body {
   font-size: 0.95rem;
 }
 
+.confirm-status:not(.success) {
+  background: #f8fafc;
+}
+
 .confirm-status.success {
   border-color: rgba(34, 197, 94, 0.35);
   background: rgba(34, 197, 94, 0.12);
@@ -304,12 +341,6 @@ body {
   font-weight: 600;
 }
 
-/* Optional: "submitting" state looks a bit calmer */
-.confirm-status:not(.success) {
-  background: #f8fafc;
-}
-
-/* ===== Confirm button polish ===== */
 .confirm-actions .btn.btn--primary {
   border-radius: 12px;
   padding: 0.8rem 1rem;
@@ -319,59 +350,6 @@ body {
 
 .confirm-actions .btn.btn--primary:hover {
   filter: brightness(1.02);
-}
-
-/* ===== Small screens ===== */
-@media (max-width: 520px) {
-  .confirm-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .confirm-value {
-    text-align: left;
-  }
-}
-
-/* =========================
-   Footer actions
-========================= */
-.footer {
-  background: #ffffff;
-  border-top: 1px solid #e5e7eb;
-}
-
-.footer__inner {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1rem 1.25rem;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.btn {
-  appearance: none;
-  border: none;
-  border-radius: 8px;
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.btn--primary {
-  background: #2563eb;
-  color: #ffffff;
-}
-
-.btn--ghost {
-  background: #f1f5f9;
-  color: #1f2937;
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 /* =========================
@@ -414,4 +392,18 @@ body {
   padding: 0.75rem;
   max-height: 200px;
   overflow: auto;
+}
+
+/* =========================
+   Small screens
+========================= */
+@media (max-width: 520px) {
+  .confirm-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .confirm-value {
+    text-align: left;
+  }
 }
