@@ -1,11 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Flow – 3-step State Machine Demo</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <script defer src="src/app.js"></script>
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="header__inner">
+          <h1 class="title">Booking Flow</h1>
+          <p class="subtitle">3-step State Machine Demo</p>
+        </div>
+
+        <!-- Stepper -->
+        <nav class="stepper" aria-label="Foglalási lépések">
+          <ol class="stepper__list">
+            <li class="stepper__item" data-step="service" aria-current="step">
+              <span class="stepper__index">1</span>
+              <span class="stepper__label">Szolgáltatás</span>
+            </li>
+            <li class="stepper__item" data-step="slot">
+              <span class="stepper__index">2</span>
+              <span class="stepper__label">Időpont</span>
+            </li>
+            <li class="stepper__item" data-step="confirm">
+              <span class="stepper__index">3</span>
+              <span class="stepper__label">Megerősítés</span>
+            </li>
+          </ol>
+        </nav>
+      </header>
+
+      <!-- Main content -->
+      <main class="main" id="main" role="main">
+        <!-- JS ide rendereli az aktuális step tartalmát -->
+        <section class="panel" aria-live="polite">
+          <h2 class="panel__title">Kezdés</h2>
+          <p class="panel__desc">
+            A tartalmat a <code>render()</code> fogja ide rajzolni az aktuális state alapján.
+          </p>
+
+          <div class="placeholder">
+            <p><strong>Tipp:</strong> először csináljuk meg Step 1 UI-t (szolgáltatás kártyák).</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer actions -->
+      <footer class="footer">
+        <div class="footer__inner">
+          <button
+            type="button"
+            class="btn btn--ghost"
+            id="btnBack"
+            data-action="BACK"
+            disabled
+          >
+            ← Vissza
+          </button>
+
+          <button
+            type="button"
+            class="btn btn--ghost"
+            id="btnReset"
+            data-action="RESET"
+          >
+            Reset
+          </button>
+
+          <button
+            type="button"
+            class="btn btn--primary"
+            id="btnNext"
+            data-action="NEXT"
+            disabled
+          >
+            Tovább →
+          </button>
+        </div>
+      </footer>
+
+      <!-- Optional debug -->
+      <aside class="debug" aria-label="Debug">
+        <div class="debug__header">
+          <span class="debug__title">Debug state</span>
+          <button type="button" class="debug__toggle" id="debugToggle">
+            Toggle
+          </button>
+        </div>
+        <pre class="debug__pre" id="debugPre">{}</pre>
+      </aside>
+    </div>
+  </body>
 </html>
